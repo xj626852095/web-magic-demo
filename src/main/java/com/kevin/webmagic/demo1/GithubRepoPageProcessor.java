@@ -1,4 +1,5 @@
 package com.kevin.webmagic.demo1;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -28,4 +29,5 @@ public class GithubRepoPageProcessor implements PageProcessor {
     public static void main(String[] args) {
         Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/code4craft").thread(5).run();
     }
+
 }
