@@ -1,5 +1,7 @@
 package com.kevin.webmagic.demo1;
 
+import com.kevin.webmagic.downloader.PhantomJSDownloader;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -40,11 +42,15 @@ public class SinaBlogProcessor implements PageProcessor {
 	}
 	
 	public static void main(String[] args) {
+		
+		PhantomJSDownloader phantomDownloader = new PhantomJSDownloader().setRetryNum(3);
+		
 		Spider.create(new SinaBlogProcessor())
 		.addUrl("http://blog.sina.com.cn/s/articlelist_1487828712_0_1.html")
 		.addPipeline(new JsonFilePipeline("F:/temp/web-magic"))
-		.setScheduler( new RedisScheduler("127.0.0.1") )
-		.run();
+		//.setScheduler( new RedisScheduler("127.0.0.1") )
+		.setDownloader(phantomDownloader)
+		.run();		
 
 	}
 
